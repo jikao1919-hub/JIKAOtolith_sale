@@ -8,7 +8,7 @@
 
 ## 公開URL
 
-https://jikao1919-hub.github.io/jikao-otolith/
+https://jikao1919-hub.github.io/JIKAOtolith_sale/
 
 ## サイト構成
 
