@@ -1,2 +1,0 @@
-# JIKAOtolith_sale
-安価な耳石計数アプリケーションJIKAOtolithの販売ページです。
