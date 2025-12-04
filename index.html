@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JIKAOtolith - 魚類耳石輪紋解析ソフトウェア</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Meiryo, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .feature-card {
+            padding: 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .price-box .price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .price-box .period {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .coming-soon {
+            background: #ffc107;
+            color: #333;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 2rem 0;
+        }
+        
+        .specs {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-left: 4px solid #667eea;
+            margin: 1rem 0;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .screenshot-placeholder {
+            background: #e0e0e0;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin: 1rem 0;
+            color: #666;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JIKAOtolith</h1>
+        <p>魚類耳石輪紋解析専門ソフトウェア</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>概要</h2>
+            <p>JIKAOtolithは、魚類の耳石に見られる輪紋（成長線）を正確に計数・測定するための専門的なWindowsアプリケーションです。顕微鏡カメラからのリアルタイム映像を受け取り、研究者が効率的に輪紋解析を行えるよう設計されています。</p>
+            
+            <div class="screenshot-placeholder">
+                スクリーンショット（準備中）
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>主な機能</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>📷 顕微鏡カメラ対応</h3>
+                    <p>ARTCAM-300MI-WOM等の顕微鏡カメラから高解像度映像を取得。リアルタイムで観察しながら作業できます。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📍 精密アノテーション</h3>
+                    <p>耳石中心（コア）から辺縁部までの測定線を設定し、輪紋を点として記録。複数の測定線をリンクして連続的に計数できます。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🎯 自動視野追跡</h3>
+                    <p>顕微鏡のステージを動かしても、テンプレートマッチングにより自動でアノテーションを追従。視野変更に強い設計です。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📏 キャリブレーション</h3>
+                    <p>対物レンズごとにピクセル-実測値変換を設定。正確な距離測定が可能です。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📊 データエクスポート</h3>
+                    <p>計数データをCSV形式で出力。Excelや統計ソフトウェアで即座に分析できます。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📈 リアルタイムグラフ</h3>
+                    <p>測定中の距離データをグラフ表示。成長パターンを視覚的に確認できます。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>動作環境</h2>
+            <div class="specs">
+                <p><strong>OS:</strong> Windows 10 </p>
+                <p><strong>フレームワーク:</strong> .NET Framework 4.8（インストーラーに同梱）</p>
+                <p><strong>推奨:</strong> 8GB以上のRAM、Full HD (1920x1080) 以上のディスプレイ</p>
+                <p><strong>対応カメラ:</strong> ARTCAM SDK対応機種（ARTCAM-300MI-WOM等）</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>価格</h2>
+            <div class="price-box">
+                <div class="price">¥99,999</div>
+                <div class="period">年間サブスクリプション</div>
+            </div>
+            
+            <div class="coming-soon">
+                現在準備中です。近日リリース予定。
+            </div>
+            
+            <p style="text-align: center; margin-top: 1rem;">
+                リリース時にはメールサポート、アップデート提供を含みます。
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>対象ユーザー</h2>
+            <ul style="margin-left: 2rem; line-height: 2;">
+                <li>水産研究機関の研究者</li>
+                <li>大学の魚類生態学研究室</li>
+                <li>水産試験場の技術職員</li>
+                <li>耳石解析を行う民間ラボ</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 JIKAOtolith. All rights reserved.</p>
+        <p style="margin-top: 1rem;">
+            <a href="terms.html">利用規約</a> | 
+            <a href="privacy.html">プライバシーポリシー</a> | 
+            <a href="refund.html">返金ポリシー</a>
+        </p>
+        <p style="margin-top: 1rem;">
+            お問い合わせ: <a href="jikao1919@gmail.com">jikao1919@gmail.com</a>
+        </p>
+    </footer>
+</body>
+</html>
