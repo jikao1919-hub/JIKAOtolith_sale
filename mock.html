@@ -111,26 +111,35 @@
         });
         
         // Checkoutを開く
-        function openCheckout(plan) {
+        <script>
+        async function openCheckout(plan) {
             const priceId = PRICE_IDS[plan];
-            
-            if (!priceId) {
-                alert('Price IDが設定されていません');
+        
+            // ① Vercel のバックエンド API を呼び出す
+            const backendUrl = "https://あなたのvercelドメイン/api/create-checkout";
+        
+            // ② API に priceId を送って checkout session を作成
+            const res = await fetch(backendUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ priceId })
+            });
+        
+            const data = await res.json();
+        
+            if (!data.sessionId) {
+                console.error("Failed to create session", data);
+                alert("Checkout セッションの作成に失敗しました");
                 return;
             }
-            
+        
+            // ③ Paddle に sessionId を渡して支払い画面を開く
             Paddle.Checkout.open({
-                items: [
-                    {
-                        priceId: priceId,
-                        quantity: 1
-                    }
-                ],
-                customer: {
-                    email: 'jikao1919@gmail.com'  // テスト用メールアドレス
-                }
+                sessionId: data.sessionId
             });
         }
+        </script>
+
         
         // Transaction IDを表示
         function showTransactionId(transactionId) {
