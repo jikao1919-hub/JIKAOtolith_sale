@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JIKAOtolith - テスト購入</title>
+    
+    <!-- Paddle.jsを読み込み（サンドボックス用） -->
+    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        .plan {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .plan h2 {
+            color: #333;
+        }
+        
+        .price {
+            font-size: 36px;
+            font-weight: bold;
+            color: #007bff;
+            margin: 20px 0;
+        }
+        
+        .buy-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .buy-button:hover {
+            background-color: #0056b3;
+        }
+        
+        #result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .transaction-id {
+            font-family: monospace;
+            font-size: 14px;
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <h1>JIKAOtolith - テスト購入</h1>
+    <p>サンドボックス環境でのテスト購入です。実際の課金は発生しません。</p>
+    
+    <div class="plan">
+        <h2>Monthly Plan</h2>
+        <div class="price">$1.00<span style="font-size: 18px;">/月</span></div>
+        <button class="buy-button" onclick="openCheckout('monthly')">購入する</button>
+    </div>
+
+    <div id="result">
+        <h3>✅ 購入完了！</h3>
+        <p><strong>Transaction ID:</strong></p>
+        <div class="transaction-id" id="transactionId"></div>
+        <p style="margin-top: 15px;">
+            このTransaction IDをコピーして、JIKAOtolithアプリのライセンス入力画面に貼り付けてください。
+        </p>
+    </div>
+    
+    <script>
+        // Client-side Tokenを入れる
+        const CLIENT_TOKEN = 'pdl_sdbx_apikey_01kc36dbaxrg53cvdynxprensk_sxMMhjYCy700jdBRFkDTtx_APK';
+        
+        // Price IDを入れる
+        const PRICE_IDS = {
+            monthly: 'pro_01kc36h6svjkw54zx4r8hz1k1h'
+        };
+        
+        // Paddleを初期化（サンドボックス環境）
+        Paddle.Initialize({
+            token: CLIENT_TOKEN,
+            environment: 'sandbox',  // サンドボックス環境
+            eventCallback: function(event) {
+                console.log('Paddle event:', event);
+                
+                // 購入完了時の処理
+                if (event.name === 'checkout.completed') {
+                    const transactionId = event.data.transaction_id;
+                    showTransactionId(transactionId);
+                }
+            }
+        });
+        
+        // Checkoutを開く
+        function openCheckout(plan) {
+            const priceId = PRICE_IDS[plan];
+            
+            if (!priceId) {
+                alert('Price IDが設定されていません');
+                return;
+            }
+            
+            Paddle.Checkout.open({
+                items: [
+                    {
+                        priceId: priceId,
+                        quantity: 1
+                    }
+                ],
+                customer: {
+                    email: 'jikao1919@gmail.com'  // テスト用メールアドレス
+                }
+            });
+        }
+        
+        // Transaction IDを表示
+        function showTransactionId(transactionId) {
+            document.getElementById('transactionId').textContent = transactionId;
+            document.getElementById('result').style.display = 'block';
+            
+            // スクロール
+            document.getElementById('result').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+    </script>
+</body>
+</html>
