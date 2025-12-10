@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JIKAOtolith - テスト購入</title>
     
-    <!-- Paddle.jsを読み込み（サンドボックス用） -->
+    <!-- Paddle.js -->
     <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
-    
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,7 +15,6 @@
             margin: 50px auto;
             padding: 20px;
         }
-        
         .plan {
             border: 2px solid #ddd;
             border-radius: 10px;
@@ -23,18 +22,11 @@
             margin: 20px 0;
             text-align: center;
         }
-        
-        .plan h2 {
-            color: #333;
-        }
-        
         .price {
             font-size: 36px;
             font-weight: bold;
             color: #007bff;
-            margin: 20px 0;
         }
-        
         .buy-button {
             background-color: #007bff;
             color: white;
@@ -44,11 +36,6 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        
-        .buy-button:hover {
-            background-color: #0056b3;
-        }
-        
         #result {
             margin-top: 30px;
             padding: 20px;
@@ -56,22 +43,17 @@
             border-radius: 5px;
             display: none;
         }
-        
         .transaction-id {
             font-family: monospace;
-            font-size: 14px;
-            background-color: #fff;
             padding: 10px;
+            background-color: white;
             border: 1px solid #ddd;
-            border-radius: 3px;
-            word-break: break-all;
         }
     </style>
 </head>
 <body>
     <h1>JIKAOtolith - テスト購入</h1>
-    <p>サンドボックス環境でのテスト購入です。実際の課金は発生しません。</p>
-    
+
     <div class="plan">
         <h2>Monthly Plan</h2>
         <div class="price">$1.00<span style="font-size: 18px;">/月</span></div>
@@ -79,77 +61,56 @@
     </div>
 
     <div id="result">
-        <h3>✅ 購入完了！</h3>
+        <h3>購入完了！</h3>
         <p><strong>Transaction ID:</strong></p>
         <div class="transaction-id" id="transactionId"></div>
-        <p style="margin-top: 15px;">
-            このTransaction IDをコピーして、JIKAOtolithアプリのライセンス入力画面に貼り付けてください。
-        </p>
     </div>
-    
+
     <script>
-        // Client-side Tokenを入れる
-        const CLIENT_TOKEN = 'test_ebf16857cbb37c5cd4ffe84ddb5';
-        
-        // Price IDを入れる
-        const PRICE_IDS = {
-            monthly: 'pri_01kc36kr7zavxtrt86vhkkpg3k'
-        };
-        
-        // Paddleを初期化（サンドボックス環境）
+        // Paddle 初期化
         Paddle.Initialize({
-            token: CLIENT_TOKEN,
+            token: "test_ebf16857cbb37c5cd4ffe84ddb5",
             eventCallback: function(event) {
-                console.log('Paddle event:', event);
-                
-                // 購入完了時の処理
-                if (event.name === 'checkout.completed') {
+                if (event.name === "checkout.completed") {
                     const transactionId = event.data.transaction_id;
                     showTransactionId(transactionId);
                 }
             }
         });
-        
-        // Checkoutを開く
-        <script>
+
+        // プランの Price ID
+        const PRICE_IDS = {
+            monthly: "pri_01kc36kr7zavxtrt86vhkkpg3k"
+        };
+
+        // ★ あなたの Vercel の URL を入力する（重要）
+        const BACKEND_URL = "https://YOUR-PROJECT.vercel.app/api/create-checkout";
+
+        // 新しい Paddle Checkout
         async function openCheckout(plan) {
             const priceId = PRICE_IDS[plan];
-        
-            // ① Vercel のバックエンド API を呼び出す
-            const backendUrl = "https://あなたのvercelドメイン/api/create-checkout";
-        
-            // ② API に priceId を送って checkout session を作成
-            const res = await fetch(backendUrl, {
+
+            const res = await fetch(BACKEND_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ priceId })
             });
-        
+
             const data = await res.json();
-        
+
             if (!data.sessionId) {
-                console.error("Failed to create session", data);
                 alert("Checkout セッションの作成に失敗しました");
                 return;
             }
-        
-            // ③ Paddle に sessionId を渡して支払い画面を開く
+
             Paddle.Checkout.open({
                 sessionId: data.sessionId
             });
         }
-        </script>
 
-        
-        // Transaction IDを表示
-        function showTransactionId(transactionId) {
-            document.getElementById('transactionId').textContent = transactionId;
-            document.getElementById('result').style.display = 'block';
-            
-            // スクロール
-            document.getElementById('result').scrollIntoView({ 
-                behavior: 'smooth' 
-            });
+        function showTransactionId(id) {
+            document.getElementById("transactionId").textContent = id;
+            document.getElementById("result").style.display = "block";
         }
     </script>
 </body>
