@@ -1,48 +1,35 @@
-# JIKAOtolith
+# JIKAOtolith リリース配布
 
-魚類耳石輪紋解析専門ソフトウェアの公式ウェブサイト
+このリポジトリは **JIKAOtolith のインストーラ配布専用** です。
+製品紹介・購入・規約などの公式サイトは https://jikao-eight.vercel.app/ をご覧ください。
 
-## 概要
+## ダウンロード
 
-このリポジトリは、JIKAOtolithソフトウェアの製品紹介ランディングページです。
+最新版: [Releases](https://github.com/jikao1919-hub/JIKAOtolith_sale/releases/latest)
 
-## 公開URL
+直接ダウンロード用の固定URL（常に最新リリースを指します）:
 
-https://jikao1919-hub.github.io/JIKAOtolith_sale/
+```
+https://github.com/jikao1919-hub/JIKAOtolith_sale/releases/latest/download/JIKAOtolith_Setup.exe
+```
 
-## サイト構成
-
-- `index.html` - メインページ（製品紹介）
-- `terms.html` - 利用規約
-- `privacy.html` - プライバシーポリシー
-- `refund.html` - 返金ポリシー
-
-## JIKAOtolithについて
-
-JIKAOtolithは、魚類の耳石に見られる輪紋（成長線）を正確に計数・測定するための専門的なWindowsアプリケーションです。
-
-### 主な機能
-
-- ARTCAM顕微鏡カメラ対応
-- 輪紋の手動計数・測定
-- 自動視野追跡（テンプレートマッチング）
-- キャリブレーション管理
-- CSV形式データエクスポート
-- リアルタイムグラフ表示
-
-### 動作環境
+## 動作環境
 
 - OS: Windows 10
-- フレームワーク: .NET Framework 4.8
-- 対応カメラ: ARTCAM SDK対応機種
+- .NET Framework 4.8
+- 対応カメラ: ARTCAM SDK 対応機種
+
+---
+
+## 管理者向け：リリース手順
+
+1. このリポジトリで新しいリリースを作成（タグ例: `v1.2`）
+2. インストーラを **必ず `JIKAOtolith_Setup.exe` というファイル名で** 添付する
+   （大文字小文字も含めて一致しないと上記の固定URLが404になります）
+3. 「Set as the latest release」にチェックして公開
+
+`index.html` は GitHub Pages の旧URLにアクセスした人を公式サイトへ転送するためだけに残しています。
 
 ## ライセンス
 
 Copyright © 2024 JIKAOtolith. All rights reserved.
-
----
-
-## 開発者向け情報
-
-本リポジトリはランディングページのみを含みます。
-アプリケーション本体のソースコードは別リポジトリで管理しています。
